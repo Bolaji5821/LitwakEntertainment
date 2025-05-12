@@ -106,5 +106,17 @@ models.Event.belongsTo(models.User, { foreignKey: 'userId' });
 models.Mixtape.hasMany(models.Song, { foreignKey: 'mixtapeId' });
 models.Song.belongsTo(models.Mixtape, { foreignKey: 'mixtapeId' });
 
+// Export individual models and sequelize instance
+export const {
+    User: UserModel,
+    Blog: BlogModel,
+    Mixtape: MixtapeModel,
+    Song: SongModel,
+    TeamMember: TeamMemberModel,
+    Event: EventModel,
+    Photo: PhotoModel,
+    Video: VideoModel,
+    MerchProduct: MerchProductModel,
+    Tour: TourModel
+} = models;
 export { sequelize };
-export default models;
