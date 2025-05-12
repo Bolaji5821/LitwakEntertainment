@@ -2,14 +2,25 @@ const { Sequelize } = require('sequelize');
 
 // Initialize Sequelize with database connection
 const sequelize = new Sequelize(
-  process.env.DB_NAME || 'litwak_entertainment',
-  process.env.DB_USER || 'root',
-  process.env.DB_PASSWORD || '',
-  {
-    host: process.env.DB_HOST || 'localhost',
-    dialect: 'mysql',
-    logging: false,
-  }
+    process.env.DB_NAME || 'litwak_entertainment',
+    process.env.DB_USER || 'root',
+    process.env.DB_PASSWORD || '', {
+        host: process.env.DB_HOST || 'localhost',
+        dialect: 'postgres',
+        logging: false,
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        },
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        }
+    }
 );
 
 // Import models
@@ -45,17 +56,17 @@ Song.belongsTo(Mixtape, { foreignKey: 'mixtapeId' });
 
 // Export models and sequelize instance
 module.exports = {
-  sequelize,
-  User,
-  Blog,
-  Mixtape,
-  Song,
-  TeamMember,
-  Event,
-  Photo,
-  Video,
-  MerchProduct,
-  Tour,
+    sequelize,
+    User,
+    Blog,
+    Mixtape,
+    Song,
+    TeamMember,
+    Event,
+    Photo,
+    Video,
+    MerchProduct,
+    Tour,
 };
 
 export { User }
