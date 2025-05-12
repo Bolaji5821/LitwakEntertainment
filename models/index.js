@@ -1,5 +1,5 @@
-const { Sequelize } = require('sequelize');
-const pg = require('pg');
+import { Sequelize } from 'sequelize';
+import pg from 'pg';
 
 // Database configuration
 const dbConfig = {
@@ -65,51 +65,46 @@ if (!isBuildTime) {
 }
 
 // Import models
-const User = require('./User')(sequelize);
-const Blog = require('./Blog')(sequelize);
-const Mixtape = require('./Mixtape')(sequelize);
-const Song = require('./Song')(sequelize);
-const TeamMember = require('./TeamMember')(sequelize);
-const Event = require('./Event')(sequelize);
-const Photo = require('./Photo')(sequelize);
-const Video = require('./Video')(sequelize);
-const MerchProduct = require('./MerchProduct')(sequelize);
-const Tour = require('./Tour')(sequelize);
+import User from './User.js';
+import Blog from './Blog.js';
+import Mixtape from './Mixtape.js';
+import Song from './Song.js';
+import TeamMember from './TeamMember.js';
+import Event from './Event.js';
+import Photo from './Photo.js';
+import Video from './Video.js';
+import MerchProduct from './MerchProduct.js';
+import Tour from './Tour.js';
 
-// Define associations
-
-// User associations
-User.hasMany(Blog, { foreignKey: 'userId' });
-Blog.belongsTo(User, { foreignKey: 'userId' });
-
-User.hasMany(Mixtape, { foreignKey: 'userId' });
-Mixtape.belongsTo(User, { foreignKey: 'userId' });
-
-User.hasMany(Song, { foreignKey: 'userId' });
-Song.belongsTo(User, { foreignKey: 'userId' });
-
-User.hasMany(Event, { foreignKey: 'userId' });
-Event.belongsTo(User, { foreignKey: 'userId' });
-
-// Other associations
-Mixtape.hasMany(Song, { foreignKey: 'mixtapeId' });
-Song.belongsTo(Mixtape, { foreignKey: 'mixtapeId' });
-
-// Export models and sequelize instance
-module.exports = {
-    sequelize,
-    User,
-    Blog,
-    Mixtape,
-    Song,
-    TeamMember,
-    Event,
-    Photo,
-    Video,
-    MerchProduct,
-    Tour,
+// Initialize models
+const models = {
+    User: User(sequelize),
+    Blog: Blog(sequelize),
+    Mixtape: Mixtape(sequelize),
+    Song: Song(sequelize),
+    TeamMember: TeamMember(sequelize),
+    Event: Event(sequelize),
+    Photo: Photo(sequelize),
+    Video: Video(sequelize),
+    MerchProduct: MerchProduct(sequelize),
+    Tour: Tour(sequelize)
 };
 
-export { User }
+// Define associations
+models.User.hasMany(models.Blog, { foreignKey: 'userId' });
+models.Blog.belongsTo(models.User, { foreignKey: 'userId' });
 
-export { Blog }
+models.User.hasMany(models.Mixtape, { foreignKey: 'userId' });
+models.Mixtape.belongsTo(models.User, { foreignKey: 'userId' });
+
+models.User.hasMany(models.Song, { foreignKey: 'userId' });
+models.Song.belongsTo(models.User, { foreignKey: 'userId' });
+
+models.User.hasMany(models.Event, { foreignKey: 'userId' });
+models.Event.belongsTo(models.User, { foreignKey: 'userId' });
+
+models.Mixtape.hasMany(models.Song, { foreignKey: 'mixtapeId' });
+models.Song.belongsTo(models.Mixtape, { foreignKey: 'mixtapeId' });
+
+export { sequelize };
+export default models;
