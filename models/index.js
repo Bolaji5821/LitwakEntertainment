@@ -52,8 +52,9 @@ const sequelize = new Sequelize(
     }
 );
 
-// Test the connection only if not in build environment
-if (process.env.NODE_ENV !== 'production' || process.env.VERCEL_ENV !== 'production') {
+// Only test connection if not in build environment
+const isBuildTime = process.env.NEXT_PHASE === 'phase-production-build';
+if (!isBuildTime) {
     sequelize.authenticate()
         .then(() => console.log('Database connection established successfully.'))
         .catch(err => console.error('Unable to connect to the database:', err));
