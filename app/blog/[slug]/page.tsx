@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Banner from '@/components/Banner';
-import { formatDate } from '@/lib/utils';
+// import { formatDate } from '@/lib/utils';
 import { ArrowLeft } from 'lucide-react';
 
 interface BlogPost {
@@ -105,9 +105,8 @@ export default function BlogPostPage({ params }: PageProps) {
   return (
     <div>
       <Banner 
-        title={post.title} 
-        image={post.image}
-      />
+              title={post.title}
+              image={post.image} subtitle={undefined}      />
       
       <div className="bg-purple-950 py-16 px-4">
         <div className="container mx-auto max-w-4xl">
@@ -123,7 +122,8 @@ export default function BlogPostPage({ params }: PageProps) {
             <div className="flex flex-wrap justify-between items-center mb-8 pb-8 border-b border-purple-800">
               <div>
                 <span className="text-purple-400 block mb-2">
-                  {formatDate(post.date)}
+                  {/* {formatDate(post.date)} */}
+                  post.date
                 </span>
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">{post.title}</h1>
               </div>
