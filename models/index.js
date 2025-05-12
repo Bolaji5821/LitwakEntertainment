@@ -1,4 +1,5 @@
 const { Sequelize } = require('sequelize');
+const pg = require('pg');
 
 // Database configuration
 const dbConfig = {
@@ -8,6 +9,7 @@ const dbConfig = {
         database: process.env.DB_NAME || 'neondb',
         host: process.env.DB_HOST || 'localhost',
         dialect: 'postgres',
+        dialectModule: pg,
         logging: false,
         dialectOptions: {
             ssl: false
@@ -19,6 +21,7 @@ const dbConfig = {
         database: process.env.DB_NAME,
         host: process.env.DB_HOST,
         dialect: 'postgres',
+        dialectModule: pg,
         logging: false,
         dialectOptions: {
             ssl: {
@@ -46,6 +49,7 @@ const sequelize = new Sequelize(
     config.password, {
         host: config.host,
         dialect: config.dialect,
+        dialectModule: config.dialectModule,
         logging: config.logging,
         dialectOptions: config.dialectOptions,
         pool: config.pool
