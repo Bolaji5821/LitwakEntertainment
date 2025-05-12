@@ -14,14 +14,9 @@ export default function Banner({ title, subtitle, image }) {
         <
         div className = "absolute inset-0 flex flex-col items-center justify-center text-center px-4" >
         <
-        h1 className = "text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" > { title } <
-        /h1> {
-            subtitle && ( <
-                p className = "text-xl text-purple-200 max-w-2xl" > { subtitle } <
-                /p>
+        h1 className = "text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" > { title } </h1> {
+            subtitle && ( <p className = "text-xl text-purple-200 max-w-2xl" > { subtitle } </p>
             )
-        } <
-        /div> <
-        /div>
+        } </div> </div>
     );
 }
