@@ -16,7 +16,12 @@ export default function RootLayout({ children }) {
         enableSystem >
         <div className = "flex min-h-screen flex-col">
         <Navbar/>
-        <main className = "flex-grow" > { children } </main> <Footer/>
-        </div> </ThemeProvider> </body> </html>
+        <main className="flex-grow" > { children } 
+        </main> 
+        <Footer/>
+        </div>
+         </ThemeProvider>
+        </body>
+        </html>
     );
 }
