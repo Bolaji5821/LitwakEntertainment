@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { UserModel } from '../../../../models/index.js';
-import { generateToken } from '../../../../lib/auth';
+import { UserModel } from '@/models/index.js';
+import { generateToken } from '@/lib/auth.js';
 
 export async function POST(request) {
     try {

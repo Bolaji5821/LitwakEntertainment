@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import { UserModel, sequelize } from '../../../../models/index.js';
+import { UserModel, sequelize } from '@/models/index.js';
 import { Op } from 'sequelize';
-import { generateToken } from '../../../../lib/auth';
+import { generateToken } from '@/lib/auth.js';
 
 export async function POST(request) {
     try {

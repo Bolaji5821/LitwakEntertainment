@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { BlogModel } from '../../../models/index.js';
-import { authMiddleware, authorize } from '../../../lib/auth';
+import { BlogModel } from '@/models/index.js';
+import { authMiddleware, authorize } from '@/lib/auth.js';
 
 // Middleware to protect routes
 const withProtection = (handler, roles = []) => {

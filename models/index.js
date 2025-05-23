@@ -1,5 +1,15 @@
 import { Sequelize } from 'sequelize';
 import pg from 'pg';
+import User from './User.js';
+import Blog from './Blog.js';
+import Mixtape from './Mixtape.js';
+import Song from './Song.js';
+import TeamMember from './TeamMember.js';
+import Event from './Event.js';
+import Photo from './Photo.js';
+import Video from './Video.js';
+import MerchProduct from './MerchProduct.js';
+import Tour from './Tour.js';
 
 // Database configuration
 const dbConfig = {
@@ -64,18 +74,6 @@ if (!isBuildTime) {
         .catch(err => console.error('Unable to connect to the database:', err));
 }
 
-// Import models
-import User from './User.js';
-import Blog from './Blog.js';
-import Mixtape from './Mixtape.js';
-import Song from './Song.js';
-import TeamMember from './TeamMember.js';
-import Event from './Event.js';
-import Photo from './Photo.js';
-import Video from './Video.js';
-import MerchProduct from './MerchProduct.js';
-import Tour from './Tour.js';
-
 // Initialize models
 const models = {
     User: User(sequelize),
@@ -107,16 +105,16 @@ models.Mixtape.hasMany(models.Song, { foreignKey: 'mixtapeId' });
 models.Song.belongsTo(models.Mixtape, { foreignKey: 'mixtapeId' });
 
 // Export individual models and sequelize instance
-export const {
-    User: UserModel,
-    Blog: BlogModel,
-    Mixtape: MixtapeModel,
-    Song: SongModel,
-    TeamMember: TeamMemberModel,
-    Event: EventModel,
-    Photo: PhotoModel,
-    Video: VideoModel,
-    MerchProduct: MerchProductModel,
-    Tour: TourModel
-} = models;
-export { sequelize };
+export {
+    models as UserModel,
+    models as BlogModel,
+    models as MixtapeModel,
+    models as SongModel,
+    models as TeamMemberModel,
+    models as EventModel,
+    models as PhotoModel,
+    models as VideoModel,
+    models as MerchProductModel,
+    models as TourModel,
+    sequelize
+};
