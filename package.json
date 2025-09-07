@@ -57,7 +57,7 @@
         "next-themes": "^0.3.0",
         "pg": "^8.15.6",
         "pg-hstore": "^2.3.4",
-        "postcss": "8.4.30",
+        "postcss": "8.5.3",
         "react": "18.2.0",
         "react-day-picker": "^8.10.1",
         "react-dom": "18.2.0",
